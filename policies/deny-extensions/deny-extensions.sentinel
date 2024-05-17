@@ -1,0 +1,13 @@
+# Import common-functions/tfstate-functions.sentinel
+# with alias "state"
+import "tfplan-functions" as plan
+
+# Get all Azure Linux VMs using azurerm_linux_virtual_machine
+allAzureLinuxVMs = plan.find_resources("azurerm_linux_virtual_machine")
+
+violatingLinuxVM = plan.filter_attribute_is_value(allAzureLinuxVMs,
+                            "allow_extension_operations", true, true)
+
+main = rule {
+    length(violatingLinuxVM["messages"]) is 0
+}
