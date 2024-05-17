@@ -1,8 +1,9 @@
 # Copyright (c) HashiCorp, Inc.
 # SPDX-License-Identifier: MPL-2.0
 
+# source: https://github.com/hashicorp/terraform-sentinel-policies/tree/main/common-functions/tfplan-functions
 module "tfplan-functions" {
-    source = "common-functions/tfplan-functions.sentinel"
+    source = "./common-functions/tfplan-functions.sentinel"
 }
 
 policy "managed-disk-encryption-is-enabled" {
